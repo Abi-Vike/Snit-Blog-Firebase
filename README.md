@@ -1,3 +1,1 @@
-A Responsive Free One Page Portfolio/Blog Website for Dave Solo
-
-By Abiel - Originally from themewagon.com
+A simple blog page powered on Firebase
