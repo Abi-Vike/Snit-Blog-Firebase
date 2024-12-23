@@ -1,3 +1,5 @@
+import "./firebase-init.js";
+
 import "./preloader.js";
 import "./page-scroll.js";
 import "./menu.js";
