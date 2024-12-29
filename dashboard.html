@@ -18,7 +18,7 @@
   <body>
     <div class="container mt-5">
       <h1 class="text-center">Admin Dashboard</h1>
-      <button id="logout-btn" class="btn btn-secondary mb-3">Logout</button>
+      <button id="logout-btn" class="btn btn-danger mb-3">Logout</button>
 
       <h3>Create New Post</h3>
       <form id="create-post-form">
@@ -41,15 +41,6 @@
             placeholder="Post Content"
             required
           ></textarea>
-        </div>
-        <div class="form-group">
-          <label for="post-image">Image URL</label>
-          <input
-            type="url"
-            class="form-control"
-            id="post-image"
-            placeholder="https://example.com/image.jpg"
-          />
         </div>
         <button type="submit" class="btn btn-success">Create Post</button>
       </form>
