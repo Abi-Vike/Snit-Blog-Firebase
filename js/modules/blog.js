@@ -1,27 +1,31 @@
 // js/modules/blog.js
 
-import { db } from "./firebase-init.js"; // Import Firestore instance
-
-// maybe temp logging
-console.log("Firestore Instance:", db); // Debugging Line
+import { db } from "./firebase-init.js";
+import {
+  collection,
+  query,
+  orderBy,
+  onSnapshot,
+  doc,
+  getDoc,
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 $(document).ready(function () {
-  // DOM Elements
   const blogSlider = $("#blogSlider");
   const slidesList = blogSlider.find(".slides");
   const sliderPrev = $(".slider-prev");
   const sliderNext = $(".slider-next");
 
-  // Function to Fetch and Display Posts
   function fetchAndDisplayPosts() {
-    const postsRef = db.collection("posts").orderBy("timestamp", "desc");
+    const postsRef = collection(db, "posts");
+    const q = query(postsRef, orderBy("timestamp", "desc"));
 
-    postsRef.onSnapshot((snapshot) => {
-      slidesList.empty(); // Clear existing slides
+    onSnapshot(q, (snapshot) => {
+      slidesList.empty();
 
-      snapshot.forEach((doc) => {
-        const post = doc.data();
-        const postId = doc.id;
+      snapshot.forEach((docSnap) => {
+        const post = docSnap.data();
+        const postId = docSnap.id;
 
         const slideItem = `
           <li>
@@ -43,36 +47,32 @@ $(document).ready(function () {
         slidesList.append(slideItem);
       });
 
-      initializeFlexSlider(); // Initialize FlexSlider after loading slides
+      initializeFlexSlider();
     });
   }
 
-  // Utility Function to Truncate Text
   function truncateText(text, maxLength) {
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength) + "...";
-    }
-    return text;
+    return text.length > maxLength
+      ? text.substring(0, maxLength) + "..."
+      : text;
   }
 
-  // Initialize FlexSlider
   function initializeFlexSlider() {
-    if (blogSlider.hasClass("flexslider-initialized")) return; // Prevent re-initialization
+    if (blogSlider.hasClass("flexslider-initialized")) return;
 
     blogSlider.flexslider({
       animation: "slide",
-      controlNav: false, // Hide default navigation
-      directionNav: false, // Hide default direction navigation
-      slideshow: true, // Enable auto-rotation
-      slideshowSpeed: 5000, // 5 seconds per slide
-      animationSpeed: 600, // Slide animation speed
-      pauseOnHover: true, // Pause auto-rotation on hover
+      controlNav: false,
+      directionNav: false,
+      slideshow: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      pauseOnHover: true,
       start: function () {
         blogSlider.addClass("flexslider-initialized");
       },
     });
 
-    // Handle custom navigation buttons
     sliderPrev.on("click", function () {
       blogSlider.flexslider("prev");
     });
@@ -82,39 +82,31 @@ $(document).ready(function () {
     });
   }
 
-  // Handle "Continue Reading" Button Click (Event Delegation)
-  slidesList.on("click", "button.continue-reading-btn", function () {
+  slidesList.on("click", "button.continue-reading-btn", async function () {
     const postId = $(this).data("id");
-    displayFullPost(postId);
+    await displayFullPost(postId);
   });
 
-  // Function to Display Full Post in Modal
-  function displayFullPost(postId) {
-    db.collection("posts")
-      .doc(postId)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          const post = doc.data();
-          $("#blogPostModalLabel").text(post.title);
-          $("#blogPostContent").html(`
-            ${
-              post.imageURL
-                ? `<img src="${post.imageURL}" alt="${post.title}" class="img-fluid mb-2">`
-                : ""
-            }
-            <p>${post.content}</p>
-          `);
-          $("#blogPostModal").modal("show");
-        } else {
-          console.log("No such document!");
+  async function displayFullPost(postId) {
+    const postDoc = doc(db, "posts", postId);
+    const docSnap = await getDoc(postDoc);
+
+    if (docSnap.exists()) {
+      const post = docSnap.data();
+      $("#blogPostModalLabel").text(post.title);
+      $("#blogPostContent").html(`
+        ${
+          post.imageURL
+            ? `<img src="${post.imageURL}" alt="${post.title}" class="img-fluid mb-2">`
+            : ""
         }
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
+        <p>${post.content}</p>
+      `);
+      $("#blogPostModal").modal("show");
+    } else {
+      console.log("No such document!");
+    }
   }
 
-  // Initialize Fetching Posts
   fetchAndDisplayPosts();
 });

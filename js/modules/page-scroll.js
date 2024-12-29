@@ -1,15 +1,23 @@
+// js/modules/page-scroll.js
+
 $(document).ready(function () {
-  $("a.page-scroll").on("click", function (event) {
-    var $anchor = $(this);
+  $('a[href^="#"]').on("click", function (e) {
+    e.preventDefault();
+
+    var target = this.hash;
+    var $target = $(target);
+
     $("html, body")
       .stop()
       .animate(
         {
-          scrollTop: $($anchor.attr("href")).offset().top,
+          scrollTop: $target.offset().top,
         },
-        1500,
-        "easeInOutExpo"
+        800,
+        "swing",
+        function () {
+          window.location.hash = target;
+        }
       );
-    event.preventDefault();
   });
 });

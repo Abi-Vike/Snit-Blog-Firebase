@@ -1,5 +1,7 @@
+// Import Firebase Initialization First
 import "./firebase-init.js";
 
+// Import Other Modules
 import "./preloader.js";
 import "./page-scroll.js";
 import "./menu.js";

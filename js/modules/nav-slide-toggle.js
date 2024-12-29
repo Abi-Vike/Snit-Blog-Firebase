@@ -1,5 +1,7 @@
-$(window).on("load", function () {
-  $(".nav_slide_button").on("click", function () {
-    $(".pull").slideToggle();
+// js/modules/nav-slide-toggle.js
+
+$(document).ready(function () {
+  $("#nav-toggle").on("click", function () {
+    $("#nav-menu").slideToggle();
   });
 });
