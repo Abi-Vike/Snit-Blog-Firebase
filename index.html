@@ -23,6 +23,8 @@
   <link href="css/animate.css" rel="stylesheet" />
   <!-- Custom Favicon -->
   <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,10 +39,10 @@
   <div id="preloader"></div>
 
   <!-- ==========================
-        HEADER SECTION 
-        =========================== -->
+  HEADER SECTION 
+  =========================== -->
   <header id="home">
-    <!-- creative menu -->
+    <!-- Creative Menu -->
     <div class="container-fluid">
       <div class="row">
         <div class="menu-wrap">
@@ -55,40 +57,40 @@
             </div>
           </nav>
         </div>
-        <button class="menu-button" id="open-button"></button><!-- menu button -->
+        <button class="menu-button" id="open-button" aria-label="Open Menu"></button><!-- Menu Button -->
       </div>
       <!--/row-->
     </div>
     <!--/container-->
-    <!-- Header Image -->
+
+    <!-- Header Image with Gradient Overlay -->
     <section class="hero" id="hero">
+      <div class="overlay"></div> <!-- Gradient Overlay -->
       <div class="container">
         <!-- Slider Button (don't edit!)-->
         <div class="row">
           <div class="col-md-12 text-right navicon">
-            <a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a>
+            <a id="nav-toggle" class="nav_slide_button" href="#" aria-label="Toggle Navigation"><span></span></a>
           </div>
         </div>
         <!-- HEADER HEADLINE -->
         <div class="row">
           <div class="col-md-8 col-md-offset-1 inner">
-            <h1 class="animated fadeInDown">
+            <h1 class="animated fadeInDown arrow">
               <span>Betty</span><br />
             </h1>
             <!-- Title -->
-            <h3 class="animated fadeInUp delay-05s">
-              <span class="rotate"> Berliner, Loves Christ, Law Student, Loves Children</span>
+            <h3 class="animated fadeInUp delay-05s rotate">
+              <span>Loves Christ, Law Student, Loves Children</span>
             </h3>
-            <!-- Text Rotator -->
           </div>
         </div>
         <!-- Learn More Button -->
         <div class="row">
           <div class="col-md-6 col-md-offset-3 text-center">
-            <a href="#about" class="scrollto wow fadeInUp delay-5s">
-              <p><span style="color: #ffa600">SEE MORE</span></p>
+            <a href="#about" class="scrollto wow fadeInUp delay-5s" aria-label="See More">
               <p class="scrollto--arrow">
-                <img src="img/scroll-down.png" alt="scroll down arrow" />
+                <img src="img/scroll-down.png" alt="Scroll Down Arrow" />
               </p>
             </a>
           </div>
@@ -110,8 +112,7 @@
       <div class="row">
         <div class="col-md-8 col-md-offset-2 wp1">
           <h1 class="arrow">Who am <span>I</span>?</h1>
-          <!-- Headline -->
-          <!-- about / welcome text -->
+          <!-- About / Welcome Text -->
           <p>
             I am Betty Biniam, a dedicated video editor and
             videographer with a passion for creating inspiring Gospel content.
@@ -253,7 +254,7 @@
   <br />
   <section class="text-center section-padding contact-wrap" id="contact">
     <!-- To Top Button -->
-    <a href="#top" class="up-btn">
+    <a href="#top" class="up-btn" aria-label="Scroll to Top">
       <i class="fa fa-chevron-up"></i>
     </a>
     <div class="container">
@@ -282,7 +283,7 @@
         <div class="col-sm-4">
           <div class="dark-box">
             <h2><i class="fa fa-paper-plane"></i><span>Email</span></h2>
-            <p><a class="button" href="mailto:bettybiniam@gmail.com">bettybiniam@gmail.com</a></p>
+            <p><a class="button" href="mailto:bettybiniam@gmail.com">bettybiniam2017@gmail.com</a></p>
           </div>
         </div>
       </div>
@@ -328,7 +329,7 @@
       <div class="row">
         <div class="col-md-12 text-center">
           <p>Dec-2024
-            <a href="https://www.instagram.com/abiti_tom/" target="_blank">Abiel</a>
+            <a href="https://www.instagram.com/abiti_tom/" target="_blank" rel="noopener noreferrer">Abiel</a>
           </p>
         </div>
       </div>
@@ -350,7 +351,7 @@
   <script src="assets/textrotator/jquery.simple-text-rotator.js"></script>
   <script src="assets/lightbox/js/lightbox.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&amp;sensor=false"></script>
-  
+
   <!-- Include JavaScript Modules -->
   <!-- ES6 Modules calling for further modularization-->
   <script type="module" src="js/modules/main.js"></script>

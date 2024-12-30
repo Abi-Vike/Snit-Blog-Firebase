@@ -2,7 +2,7 @@
 
 /* ///////////////////////////////////////////////////////////////////// 
 // 03 - Preloader
-////////////////////////////////////////////////////////////////////*/
+//////////////////////////////////////////////////////////////////*/
 
 #preloader {
   position: fixed;
@@ -19,7 +19,7 @@
 	Global Styles
   ========================================================================== */
 a {
-  color: #e04343;
+  color: #e04343; /* Original color retained */
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -o-transition: all 0.5s;
@@ -111,12 +111,12 @@ button,
 input,
 select,
 textarea {
-  font-family: "Varela Round", sans-serif;
+  font-family: "Poppins", sans-serif; /* Updated to Poppins */
 }
 body {
   background-color: rgb(249, 244, 244);
   margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Poppins", sans-serif; /* Updated to Poppins */
 }
 /* ==========================================================================Links========================================================================== */
 a:focus {
@@ -127,29 +127,37 @@ a:hover {
   outline: 0;
 }
 /* ==========================================================================Typography========================================================================== */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
+/* Removed Open Sans import as Poppins is being used */
+
+/* Updated Typography with Poppins and Great Vibes */
 h1 {
+  font-family: "Great Vibes", cursive; /* Applying Great Vibes to h1 */
   font-size: 2em;
   margin: 0.67em 0;
   color: #353535;
 }
 h2 {
+  font-family: "Poppins", sans-serif; /* Ensuring consistency */
   font-size: 1.5em;
   margin: 0.83em 0;
 }
 h3 {
+  font-family: "Poppins", sans-serif; /* Ensuring consistency */
   font-size: 1.17em;
   margin: 1em 0;
 }
 h4 {
+  font-family: "Poppins", sans-serif; /* Ensuring consistency */
   font-size: 1em;
   margin: 1.33em 0;
 }
 h5 {
+  font-family: "Poppins", sans-serif; /* Ensuring consistency */
   font-size: 0.83em;
   margin: 1.67em 0;
 }
 h6 {
+  font-family: "Poppins", sans-serif; /* Ensuring consistency */
   font-size: 12px;
   margin: 2.33em 0;
 }
@@ -491,133 +499,107 @@ table {
 }
 /* ==========================================================================Hero========================================================================== */
 .hero {
-  background: url("../img/personal/berlin.jpg") right bottom no-repeat;
+  position: relative; /* Establishes a positioning context for the overlay */
+  background: url("../img/personal/feminine-blog-unsplash.jpg") center center
+    no-repeat;
   background-size: cover;
   padding: 110px 0 100px 0;
-  height: auto;
-  background-color: rgb(249, 244, 244);
+  height: 100vh; /* Makes the hero section full viewport height */
+  display: flex;
+  align-items: center; /* Vertically centers the content */
+  justify-content: center; /* Horizontally centers the content */
+  color: #fff; /* Ensures text is white by default */
 }
-.hero:before {
-  content: "";
+
+.hero .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  /* Gradient Overlay: from semi-transparent pink to more opaque pink */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 171, 241, 0.1) /* top */,
+    rgba(255, 105, 180, 0.4) /* mid-part */,
+    rgba(0, 0, 0, 0.9) /* bottom */
+  );
+  z-index: 1; /* Places the overlay above the background image */
 }
-.hero container {
+
+.hero .container {
   position: relative;
-  z-index: 2;
+  z-index: 2; /* Ensures content is above the overlay */
 }
+
 .hero h1 {
-  font-size: 120px;
-  letter-spacing: -8px;
+  font-family: "Great Vibes", cursive; /* Applying Great Vibes to h1 */
+  font-size: 80px; /* Reduced size for better fit */
+  letter-spacing: -2px;
   margin: 0;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 95px;
   text-transform: uppercase;
+  color: #fff;
 }
+
 .hero h1 span {
-  color: #ffa600;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  /* display:inline-block; */
+  color: #ff69b4; /* Deep Pink for emphasis */
 }
+
 .hero h3 {
-  font-size: 20px;
-  font-weight: bolder;
-  margin: 0;
-  padding: 0;
-  opacity: 0.5;
-  color: #ffa600;
-  letter-spacing: 18px;
+  font-family: "Great Vibes", cursive; /* Applying Great Vibes to h3 */
+  font-size: 24px;
+  font-weight: 600;
+  margin: 20px 0;
+  opacity: 0.9; /* Increased opacity for better visibility */
+  color: #ffb6c1; /* Light Pink */
+  letter-spacing: 8px;
   line-height: 50px;
   text-transform: uppercase;
 }
+
 .hero p {
   letter-spacing: 1px;
   color: #fff;
-  font-size: 15px;
+  font-size: 18px;
 }
+
 /* Boucing Arrow Animation */
 @keyframes arrowbounce {
   from {
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
     transform: translateY(0);
   }
   to {
-    -webkit-transform: translateY(-20px);
-    -moz-transform: translateY(-20px);
     transform: translateY(-20px);
   }
 }
-@-moz-keyframes arrowbounce {
-  /* Firefox */
-  from {
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    transform: translateY(0);
-  }
-  to {
-    -webkit-transform: translateY(-20px);
-    -moz-transform: translateY(-20px);
-    transform: translateY(-20px);
-  }
-}
-@-webkit-keyframes arrowbounce {
-  /* Safari and Chrome */
-  from {
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    transform: translateY(0);
-  }
-  to {
-    -webkit-transform: translateY(-20px);
-    -moz-transform: translateY(-20px);
-    transform: translateY(-20px);
-  }
-}
-@-o-keyframes arrowbounce {
-  /* Opera */
-  from {
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    transform: translateY(0);
-  }
-  to {
-    -webkit-transform: translateY(-20px);
-    -moz-transform: translateY(-20px);
-    transform: translateY(-20px);
-  }
-}
+
 .scrollto {
-  padding: 150px 0px 0px 0px;
+  padding: 20px 0; /* Adjusted padding for better spacing */
   display: block;
-  color: #fff;
+  color: #ffb6c1; /* Light Pink */
   text-decoration: none;
   width: 200px;
   margin: 0 auto;
   border-bottom: none;
 }
+
 .scrollto--arrow {
   padding: 10px;
 }
+
 .scrollto--arrow img {
   animation: arrowbounce 1s alternate infinite;
-  -moz-animation: arrowbounce 1s alternate infinite;
-  /* Firefox */
-  -webkit-animation: arrowbounce 1s alternate infinite;
-  /* Safari and Chrome */
-  -o-animation: arrowbounce 1s alternate infinite;
-  /* Opera */
 }
+
 /* ==========================================================================Intro========================================================================== */
 .intro p {
   margin: 50px 0 0;
 }
 h1.arrow {
-  font-size: 18px;
+  font-family: "Great Vibes", cursive; /* Applying Great Vibes */
+  font-size: 36px; /* Increased size for prominence */
   text-transform: uppercase;
   color: #353535;
   letter-spacing: 4px;
@@ -626,7 +608,7 @@ h1.arrow {
   font-weight: bold;
 }
 h1.arrow span {
-  color: #ff9100;
+  color: #ff69b4; /* Deep Pink */
 }
 /* ==========================================================================About========================================================================== */
 .about-image {
@@ -637,11 +619,11 @@ h1.arrow span {
   background-size: cover;
 }
 .color-bg {
-  background: hsl(69, 67%, 19%);
+  background: #ffe6f0; /* Updated to a soft pink */
 }
 
 .color-bg a {
-  color: #ffe800;
+  color: #ff69b4; /* Deep Pink */
 }
 .color-bg h6,
 .color-bg p {
@@ -732,7 +714,7 @@ i.respons {
 /* ==========================================================================iPhone Section========================================================================== */
 .iphone {
   width: 50%;
-  background: #f3f5f8;
+  background: #ffe6f0; /* Updated to a soft pink */
   float: left;
   height: 100%;
   box-shadow: inset -15px -11px 40px -6px rgba(0, 0, 0, 0.1);
@@ -766,7 +748,7 @@ i.respons {
 .down-arrow-btn {
   width: auto;
   height: 40px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(255, 105, 180, 0.6); /* Updated to Deep Pink */
   display: inline-block;
   margin: 15px 5px 15px 5px;
   color: #fff;
@@ -774,11 +756,12 @@ i.respons {
   line-height: 40px;
   padding: 0px 10px;
   text-align: center;
+  border-radius: 20px; /* Rounded corners */
 }
 .down-arrow-btn:hover,
 .down-arrow-btn:focus {
   color: #fff;
-  background: rgba(0, 0, 0, 1);
+  background: rgba(255, 105, 180, 1); /* Deep Pink on hover */
 }
 .portfolio img {
   height: 300px;
@@ -812,7 +795,6 @@ img.grayscale:hover {
   padding-left: 15px;
 }
 .effects .img {
-  position: relative;
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -866,8 +848,8 @@ img.grayscale:hover {
   opacity: 1;
 }
 .img img {
-  width: -webkit-calc(100%+40px) !important;
-  width: calc(100%+40px) !important;
+  width: -webkit-calc(100% + 40px) !important;
+  width: calc(100% + 40px) !important;
   -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
   transition: opacity 0.35s, transform 0.35s;
   -moz-transition: opacity 0.35s, -moz-transform 0.35s;
@@ -894,8 +876,9 @@ img.grayscale:hover {
   padding-top: 75px;
 }
 .subscribe h1 {
-  color: #ffffff;
+  color: #ff69b4; /* Updated to Deep Pink */
   margin-bottom: 40px;
+  font-family: "Great Vibes", cursive; /* Applying Great Vibes */
 }
 .subscribe h1 span {
   display: block;
@@ -911,26 +894,27 @@ img.grayscale:hover {
   padding: 20px;
   width: 30%;
   color: #808080;
+  border-radius: 5px; /* Rounded corners */
 }
-
 .subscribe input[type="text"]:focus {
   outline: none;
 }
 .subscribe input[type="submit"] {
-  background: #ffe800;
-  border: solid 1px #ffe800;
+  background: #ff69b4; /* Deep Pink */
+  border: solid 1px #ff69b4;
   padding: 20px;
-  color: #e04343;
+  color: #fff; /* White text for contrast */
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
+  border-radius: 5px; /* Rounded corners */
 }
 .subscribe input[type="submit"]:hover {
-  background: rgba(255, 232, 0, 0.9);
-  border: solid 1px #ffe800;
+  background: #ffe800;
+  border: solid 1px #ff69b4;
   color: #e04343;
 }
 /* ==========================================================================CTA========================================================================== */
@@ -946,6 +930,8 @@ img.grayscale:hover {
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 1px;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 .outline-btn:hover,
 .outline-btn:focus {
@@ -961,9 +947,11 @@ img.grayscale:hover {
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 1px;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 .weight-outline-btn:hover,
-.outline-btn:focus {
+.weight-outline-btn:focus {
   color: #424242;
   border: solid 1px #424242;
 }
@@ -988,17 +976,18 @@ ul.social-buttons li:last-child {
   height: 160px;
   margin-bottom: 10px;
   border-radius: 20%;
-  background: hsl(20, 53%, 17%);
+  background: #ff69b4; /* Updated to Deep Pink */
   display: inline-block;
   color: #fff;
   font-size: 80px;
   line-height: 150px;
   text-align: center;
+  transition: background-color 0.3s, color 0.3s;
 }
 .social-btn:hover,
 .social-btn:focus {
-  background: #ffa600;
-  color: hsl(20, 53%, 17%);
+  background: #ffe600; /* Light Yellow on hover */
+  color: #ff69b4; /* Deep Pink */
 }
 .social {
   margin-top: 25px;
@@ -1007,10 +996,10 @@ ul.social-buttons li:last-child {
 .up-btn {
   width: 55px;
   height: 55px;
-  background: hsl(18, 13%, 26%);
+  background: #ff69b4; /* Updated to Deep Pink */
   display: block;
   margin: 0 auto;
-  color: #fcfbfb;
+  color: #fff; /* White for contrast */
   border-radius: 50%;
   font-size: 18px;
   line-height: 52px;
@@ -1024,18 +1013,19 @@ ul.social-buttons li:last-child {
 }
 .up-btn:hover,
 .up-btn:focus {
-  color: rgb(249, 249, 249);
-  background: #111110;
+  color: #fff;
+  background: #e04343; /* Deep Pink on hover */
 }
 .contact-details {
   margin: 70px 0;
 }
 .contact-details h2 {
   font-size: 20px;
+  font-family: "Great Vibes", cursive; /* Applying Great Vibes */
 }
 .contact-details h2 span {
   display: block;
-  color: #545454;
+  color: #fff; /* white */
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -1059,23 +1049,23 @@ ul.social-buttons li:last-child {
 }
 .contact .form-control {
   margin-bottom: 20px;
-  border: 1px solid #e3d9d9;
+  border: 1px solid #ffe800; /* Updated to light yellow */
   height: 45px;
 }
 .contact textarea.form-control {
-  height: 310px;
+  height: 232px;
 }
 
 /* Inputs styles */
 .contact .form-control {
-  border-radius: 1% !important;
+  border-radius: 5px; /* Rounded corners */
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 .contact .form-control:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
-  border: 1px solid #b0b0b0;
+  border: 1px solid #ff69b4; /* Deep Pink on focus */
 }
 
 .contact-details .dark-box {
@@ -1083,52 +1073,50 @@ ul.social-buttons li:last-child {
   border-radius: 5%;
 }
 
-@media (max-width: 767px) {
-  .contact-details .col-sm-4 {
-    margin-bottom: 20px;
-  }
-  .slider-nav-buttons .btn {
-    margin-right: 65px;
-  }
+/* ==========================================================================Services Button========================================================================== */
+/* Updated button styles in services to match girlish theme */
+.services .btn {
+  background-color: #ff69b4; /* Deep Pink */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s, transform 0.3s;
+}
+.services .btn:hover {
+  background-color: #ffe6f0; /* Light Pink on hover */
+  transform: translateY(-3px);
+}
+/* ==========================================================================Subscribe Button========================================================================== */
+/* Updated subscribe buttons to match girlish theme */
+.subscribe input[type="submit"] {
+  background: #ff69b4; /* Deep Pink */
+  border: solid 1px #ff69b4;
+  padding: 20px;
+  color: #fff; /* White text for contrast */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.5s ease;
+  border-radius: 5px; /* Rounded corners */
+}
+.subscribe input[type="submit"]:hover {
+  background: #ffe800;
+  border: solid 1px #ff69b4;
+  color: #e04343;
 }
 
-.contact-details p {
-  color: #522525;
-  font-size: medium;
-  font-weight: 400;
+/* ==========================================================================Portfolio Hover Effect========================================================================== */
+.portfolio img {
+  height: 300px;
+  width: 100%;
+  border-radius: 5px; /* Rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.portfolio img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.btn-send {
-  background: #522525;
-  color: whitesmoke;
-  transition: all 0.4s;
-  border-radius: 5%;
-  float: right;
-}
-
-.btn-send:hover {
-  background: #ffa600;
-  color: #522525;
-}
-
-button,
-button:focus,
-button:hover,
-button:active {
-  outline: none !important;
-}
-/* ==========================================================================Footer========================================================================== */
-footer a {
-  color: #a8a3a3;
-}
-footer {
-  margin-top: -100px;
-  background-color: #e4e1e1;
-  padding: 40px 0 30px;
-}
-footer p {
-  color: #816565;
-}
 /* ==========================================================================FlexSlider Custom CSS========================================================================== */
 #servicesSlider {
   margin-top: 70px;
@@ -1140,7 +1128,7 @@ ul.slides li {
   position: relative;
   padding: 11% 100px 10% 100px;
   height: 400px;
-  background-color: #3f6184;
+  background-color: #ffe6f0; /* Updated to soft pink */
 }
 .features-slider ul {
   margin: 0;
@@ -1152,9 +1140,10 @@ ul.slides li {
 }
 .features-slider li h1 {
   margin-bottom: 15px;
-  color: #fff;
+  color: #ff69b4; /* Deep Pink */
   font-weight: 400;
   font-size: 22px;
+  font-family: "Great Vibes", cursive; /* Applying Great Vibes */
 }
 .features-slider li p {
   color: #ffffff;
@@ -1232,7 +1221,7 @@ ul.slides li {
 /* 480px (WVGA - Low End Windows Phone) */
 @media screen and (max-width: 480px) {
   .wrapper {
-    background: #f3f5f8;
+    background: #ffe6f0; /* Updated to soft pink */
     height: 640px;
   }
   .iphone {
@@ -1275,7 +1264,7 @@ ul.slides li {
     display: none;
   }
   .wrapper {
-    background: #f3f5f8;
+    background: #ffe6f0; /* Updated to soft pink */
     height: 540px;
   }
   .wp2,
@@ -1315,7 +1304,6 @@ ul.slides li {
 
   .btn-send {
     float: none;
-
     margin-bottom: 80px;
   }
   .effects .img {
@@ -1343,7 +1331,7 @@ ul.slides li {
   }
 }
 
-/*-----------------------------------------------------------------Custom Added-------------------------------------------------------------*/
+/* ==========================================================================Custom Added========================================================================== */
 .truncate {
   display: inline-block;
   max-width: 100%;
@@ -1359,7 +1347,8 @@ ul.slides li {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  display: block;
+  opacity: 0.8;
+  display: none;
   transition: opacity 0.3s;
 }
 
@@ -1386,26 +1375,6 @@ ul.slides li {
 .overlay-effect:hover .grayscale {
   filter: grayscale(0%);
   -webkit-filter: grayscale(0%);
-}
-
-#blog .continue-reading-btn {
-  background-color: rgb(249, 244, 244);
-}
-
-.modal-content {
-  background-color: #a8a8a8;
-  height: auto;
-  width: auto;
-}
-
-.modal-title {
-  font-size: large;
-  align-items: center;
-}
-
-.modal-body #blogPostContent {
-  color: #2b1515;
-  font-size: large;
 }
 
 /* YouTube Section Spacing Adjustments */
@@ -1547,7 +1516,6 @@ ul.slides li {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .slider-nav-buttons .btn:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -1560,4 +1528,251 @@ ul.slides li {
 /* Optional: Hide FlexSlider's default navigation */
 .flex-control-nav {
   display: none;
+}
+
+/* ==========================================================================Footer Styling========================================================================== */
+footer a {
+  color: #a8a3a3;
+}
+footer {
+  margin-top: -100px;
+  background-color: #ffe6f0; /* Updated to soft pink */
+  padding: 40px 0 30px;
+  border-top: 2px solid #ff69b4; /* Added a decorative top border */
+}
+footer p {
+  color: #816565;
+  font-family: "Poppins", sans-serif; /* Ensuring consistency */
+}
+
+/* ==========================================================================Responsive Enhancements========================================================================== */
+
+/* Adjustments for small devices */
+@media (max-width: 767px) {
+  /* Adjust hero section text alignment and padding */
+  .hero .inner {
+    padding-top: 10px;
+    text-align: center;
+  }
+
+  .hero h3 {
+    letter-spacing: 10px;
+  }
+
+  .hero {
+    padding-bottom: 0;
+  }
+
+  /* Adjust subscribe input width */
+  .subscribe input[type="text"] {
+    width: 50%;
+    margin-bottom: 30px;
+  }
+
+  /* Adjust send button */
+  .btn-send {
+    float: none;
+    margin-bottom: 80px;
+  }
+
+  /* Adjust image effects */
+  .effects .img {
+    margin-bottom: 15px;
+  }
+
+  /* Adjust menu links in mobile view */
+  .show-menu .icon-list a {
+    display: block;
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+  }
+
+  .show-menu .menu-wrap {
+    height: 100%;
+  }
+
+  /* Adjust YouTube section for mobile */
+  #youtube .col-sm-4 {
+    margin-bottom: 20px; /* Add space between stacked columns */
+  }
+
+  /* Ensure images take full width on small devices */
+  #youtube .overlay-effect .img img {
+    width: 100%;
+  }
+}
+
+/* Adjustments for medium devices */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  /* No additional changes needed as existing styles handle responsiveness */
+}
+
+/* ==========================================================================New Styles for Girlish Vibe========================================================================== */
+
+/* General Font Styles */
+body {
+  font-family: "Poppins", sans-serif; /* Ensure Poppins is the default font */
+  color: #353535; /* Dark grey for better readability */
+}
+
+/* Heading Styles */
+.arrow {
+  font-family: "Great Vibes", cursive; /* Elegant cursive font */
+  color: #ff69b4; /* Deep Pink */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Styles */
+.btn-secondary {
+  background-color: #ff69b4; /* Deep Pink */
+  border: none;
+  color: #fff;
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: #ffe6f0; /* Light Pink */
+  color: #ff69b4;
+}
+
+/* Scrollto Button Styling */
+.scrollto p span {
+  font-family: "Great Vibes", cursive; /* Applying cursive font */
+  font-size: 24px;
+  color: #ff69b4; /* Deep Pink */
+  letter-spacing: 1px;
+}
+
+/* Subscribe Section Enhancements */
+.subscribe input[type="text"] {
+  border: 1px solid #ff69b4; /* Deep Pink border */
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly opaque white */
+  color: #353535;
+}
+.subscribe input[type="text"]::placeholder {
+  color: #8c9398;
+}
+.subscribe input[type="submit"] {
+  background-color: #ff69b4; /* Deep Pink */
+  border: 1px solid #ff69b4;
+  color: #fff;
+}
+.subscribe input[type="submit"]:hover {
+  background-color: #ffe6f0; /* Light Pink */
+  color: #ff69b4;
+}
+
+/* Contact Section Enhancements */
+.contact-details .dark-box {
+  background-color: rgba(255, 105, 180, 0.9); /* Semi-transparent Deep Pink */
+  border-radius: 10px;
+}
+.contact-details h2 {
+  font-family: "Great Vibes", cursive; /* Elegant cursive font */
+  color: #fff;
+}
+.contact-details p {
+  color: #ffe6f0; /* Light Pink */
+  font-size: 16px;
+}
+
+/* Footer Enhancements */
+footer p a {
+  color: #ff69b4; /* Deep Pink */
+  text-decoration: none;
+}
+footer p a:hover {
+  color: #ffe6f0; /* Light Pink */
+}
+
+/* Button Transitions */
+button,
+.btn {
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+button:hover,
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+/* ==========================================================================Additional Enhancements========================================================================== */
+
+/* Decorative Elements */
+.decorative-border {
+  border-bottom: 2px solid #ff69b4; /* Deep Pink */
+  margin: 20px 0;
+}
+
+/* Hover Effects for Images */
+.img:hover .play-icon {
+  display: block;
+  opacity: 1;
+}
+
+.img:hover .grayscale {
+  filter: grayscale(0%);
+  -webkit-filter: grayscale(0%);
+}
+
+/* Text Rotator Styling */
+.rotate {
+  font-family: "Great Vibes", cursive;
+  color: #ff69b4;
+  font-size: 24px;
+}
+
+/* Modal Enhancements */
+.modal-content {
+  background-color: #ffe6f0; /* Soft Pink */
+  border-radius: 10px; /* Rounded corners */
+}
+.modal-title {
+  font-family: "Great Vibes", cursive; /* Elegant cursive font */
+  color: #ff69b4; /* Deep Pink */
+}
+.modal-body #blogPostContent {
+  color: #353535;
+  font-size: large;
+  font-family: "Poppins", sans-serif; /* Consistent font */
+}
+
+/* Smooth Scroll Animation */
+@keyframes smoothScroll {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Font Sizes */
+@media screen and (max-width: 767px) {
+  .hero h1 {
+    font-size: 50px;
+    line-height: 60px;
+    letter-spacing: -1px;
+  }
+
+  .hero h3 {
+    font-size: 18px;
+    letter-spacing: 5px;
+  }
+
+  .intro h1.arrow {
+    font-size: 28px;
+  }
 }
