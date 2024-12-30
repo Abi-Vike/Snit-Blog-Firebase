@@ -540,6 +540,7 @@ table {
   font-weight: 600;
   line-height: 95px;
   text-transform: uppercase;
+  color: #eee5d7; /* golden */
 }
 
 .hero h3 {
@@ -548,7 +549,7 @@ table {
   font-weight: 600;
   margin: 20px 0;
   opacity: 0.9; /* Increased opacity for better visibility */
-  color: #da1986; /* white */
+  color: #eee5d7; /* golden */
   letter-spacing: 10px;
   line-height: 50px;
   text-transform: uppercase;
@@ -1315,6 +1316,13 @@ ul.slides li {
   .show-menu .menu-wrap {
     height: 100%;
   }
+  .blog-image {
+    height: 150px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 }
 
 @media screen and (max-width: 991px) {
@@ -1667,7 +1675,7 @@ body {
   color: #fff;
 }
 .contact-details p {
-  color: #ffe6f0; /* Light Pink */
+  color: rgb(54, 33, 33); /* comeback here - address*/
   font-size: 16px;
 }
 
