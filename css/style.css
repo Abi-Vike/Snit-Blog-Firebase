@@ -1262,6 +1262,13 @@ ul.slides li {
   .light-box {
     margin-bottom: 30px;
   }
+  .blog-image {
+    height: 150px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 }
 @media screen and (max-width: 50em) {
   .icon-list a {
