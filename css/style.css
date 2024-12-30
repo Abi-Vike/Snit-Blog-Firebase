@@ -129,9 +129,9 @@ a:hover {
 /* ==========================================================================Typography========================================================================== */
 /* Removed Open Sans import as Poppins is being used */
 
-/* Updated Typography with Poppins and Great Vibes */
+/* Updated Typography with Poppins and Sofia */
 h1 {
-  font-family: "Great Vibes", cursive; /* Applying Great Vibes to h1 */
+  font-family: "Sofia", cursive; /* Applying Sofia to h1 */
   font-size: 2em;
   margin: 0.67em 0;
   color: #353535;
@@ -339,7 +339,7 @@ table {
   background-color: #fff;
 }
 .dark-box {
-  box-shadow: 0px 1px 0px 0px #753030;
+  box-shadow: 0px 1px 0px 0px #ecc0e5;
   padding: 20px 0;
 }
 
@@ -437,7 +437,7 @@ table {
 }
 .icon-list {
   float: right;
-  padding: 2.5em 2em 0 6em;
+  padding: 2.5em 10em 0em 2em;
 }
 .icon-list a {
   opacity: 0;
@@ -452,8 +452,8 @@ table {
   display: block;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 0.5em;
-  font-weight: 700;
+  font-size: 0.8em;
+  font-weight: 500;
   padding-top: 0.5em;
 }
 /* Shown menu */
@@ -466,6 +466,7 @@ table {
 .show-menu .menu-wrap {
   width: 100%;
   height: 125px;
+  opacity: 0.8;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   -webkit-transition-delay: 0s;
@@ -521,7 +522,7 @@ table {
   background: linear-gradient(
     to bottom,
     rgba(255, 171, 241, 0.1) /* top */,
-    rgba(255, 105, 180, 0.4) /* mid-part */,
+    rgba(71, 21, 46, 0.6) /* mid-part */,
     rgba(0, 0, 0, 0.9) /* bottom */
   );
   z-index: 1; /* Places the overlay above the background image */
@@ -532,37 +533,25 @@ table {
   z-index: 2; /* Ensures content is above the overlay */
 }
 
-.hero h1 {
-  font-family: "Great Vibes", cursive; /* Applying Great Vibes to h1 */
+.hero span.arrow {
   font-size: 80px; /* Reduced size for better fit */
-  letter-spacing: -2px;
+  letter-spacing: 10px;
   margin: 0;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 95px;
   text-transform: uppercase;
-  color: #fff;
-}
-
-.hero h1 span {
-  color: #ff69b4; /* Deep Pink for emphasis */
 }
 
 .hero h3 {
-  font-family: "Great Vibes", cursive; /* Applying Great Vibes to h3 */
+  font-family: "Sofia"; /* Applying Sofia to h3 */
   font-size: 24px;
   font-weight: 600;
   margin: 20px 0;
   opacity: 0.9; /* Increased opacity for better visibility */
-  color: #ffb6c1; /* Light Pink */
-  letter-spacing: 8px;
+  color: #da1986; /* white */
+  letter-spacing: 10px;
   line-height: 50px;
   text-transform: uppercase;
-}
-
-.hero p {
-  letter-spacing: 1px;
-  color: #fff;
-  font-size: 18px;
 }
 
 /* Boucing Arrow Animation */
@@ -598,10 +587,10 @@ table {
   margin: 50px 0 0;
 }
 h1.arrow {
-  font-family: "Great Vibes", cursive; /* Applying Great Vibes */
-  font-size: 36px; /* Increased size for prominence */
+  font-family: "Sofia"; /* Applying Sofia */
+  font-size: 30px; /* Increased size for prominence */
   text-transform: uppercase;
-  color: #353535;
+  color: rgb(54, 33, 33);
   letter-spacing: 4px;
   background: url("../img/h1-bg.png") no-repeat center bottom;
   padding-bottom: 30px;
@@ -610,25 +599,31 @@ h1.arrow {
 h1.arrow span {
   color: #ff69b4; /* Deep Pink */
 }
-/* ==========================================================================About========================================================================== */
-.about-image {
-  height: 400px;
+/* ==========================================================================blog========================================================================== */
+.blog-image {
+  height: 500px;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 .color-bg {
-  background: #ffe6f0; /* Updated to a soft pink */
+  background: #eee5d7; /* Updated to a extra soft pink */
+  font-family: "Sofia";
+}
+
+.color-bg h1 {
+  color: #ff69b4; /* Deep Pink */
 }
 
 .color-bg a {
   color: #ff69b4; /* Deep Pink */
 }
+
 .color-bg h6,
 .color-bg p {
-  color: white;
-  font-size: 20px;
+  color: rgb(54, 33, 33);
+  font-size: 24px;
 }
 .color-bg h6::after {
   border-color: #fff;
@@ -642,19 +637,19 @@ h1.arrow span {
   color: #e04343;
   border-color: rgba(0, 0, 0, 0);
 }
-.about-text {
-  padding: 20px 50px 25px 50px;
+.blog-text {
+  padding: 2em 3em 2.5em 3em;
 }
-.about-text h1 {
+.blog-text h1 {
   text-transform: uppercase;
   font-size: 24px;
   color: #8c8c8c;
 }
 .color-bg h1.arrow span {
-  color: #ffa600;
+  color: #eb9a04; /* golden I in who am I*/
 }
 .color-bg h1.arrow {
-  color: #fff;
+  color: rgb(54, 33, 33); /* who am ?*/
 }
 /* ==========================================================================Services========================================================================== */
 .services {
@@ -878,7 +873,7 @@ img.grayscale:hover {
 .subscribe h1 {
   color: #ff69b4; /* Updated to Deep Pink */
   margin-bottom: 40px;
-  font-family: "Great Vibes", cursive; /* Applying Great Vibes */
+  font-family: "Sofia", cursive; /* Applying Sofia */
 }
 .subscribe h1 span {
   display: block;
@@ -1021,11 +1016,10 @@ ul.social-buttons li:last-child {
 }
 .contact-details h2 {
   font-size: 20px;
-  font-family: "Great Vibes", cursive; /* Applying Great Vibes */
+  font-family: "Sofia", cursive; /* Applying Sofia */
 }
 .contact-details h2 span {
   display: block;
-  color: #fff; /* white */
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -1066,11 +1060,6 @@ ul.social-buttons li:last-child {
   -webkit-box-shadow: none;
   box-shadow: none;
   border: 1px solid #ff69b4; /* Deep Pink on focus */
-}
-
-.contact-details .dark-box {
-  background-color: #dedada;
-  border-radius: 5%;
 }
 
 /* ==========================================================================Services Button========================================================================== */
@@ -1143,7 +1132,7 @@ ul.slides li {
   color: #ff69b4; /* Deep Pink */
   font-weight: 400;
   font-size: 22px;
-  font-family: "Great Vibes", cursive; /* Applying Great Vibes */
+  font-family: "Sofia", cursive; /* Applying Sofia */
 }
 .features-slider li p {
   color: #ffffff;
@@ -1521,7 +1510,7 @@ ul.slides li {
 }
 
 /* Positioning the slider container relative to position the buttons correctly */
-.about-text {
+.blog-text {
   position: relative;
 }
 
@@ -1536,13 +1525,12 @@ footer a {
 }
 footer {
   margin-top: -100px;
-  background-color: #ffe6f0; /* Updated to soft pink */
-  padding: 40px 0 30px;
-  border-top: 2px solid #ff69b4; /* Added a decorative top border */
+  background-color: #eee5d7; /* main creamy pink */
+  padding: 10px 0 10px;
 }
 footer p {
   color: #816565;
-  font-family: "Poppins", sans-serif; /* Ensuring consistency */
+  font-family: "Sofia";
 }
 
 /* ==========================================================================Responsive Enhancements========================================================================== */
@@ -1618,8 +1606,8 @@ body {
 
 /* Heading Styles */
 .arrow {
-  font-family: "Great Vibes", cursive; /* Elegant cursive font */
-  color: #ff69b4; /* Deep Pink */
+  font-family: "Sofia"; /* Elegant cursive font */
+  color: #da1986; /* Deep Pink */
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -1637,7 +1625,7 @@ body {
 
 /* Scrollto Button Styling */
 .scrollto p span {
-  font-family: "Great Vibes", cursive; /* Applying cursive font */
+  font-family: "Sofia", cursive; /* Applying cursive font */
   font-size: 24px;
   color: #ff69b4; /* Deep Pink */
   letter-spacing: 1px;
@@ -1664,11 +1652,11 @@ body {
 
 /* Contact Section Enhancements */
 .contact-details .dark-box {
-  background-color: rgba(255, 105, 180, 0.9); /* Semi-transparent Deep Pink */
+  background-color: #eee5d7; /* main creamy pink */
   border-radius: 10px;
 }
 .contact-details h2 {
-  font-family: "Great Vibes", cursive; /* Elegant cursive font */
+  font-family: "Sofia", cursive; /* Elegant cursive font */
   color: #fff;
 }
 .contact-details p {
@@ -1678,11 +1666,11 @@ body {
 
 /* Footer Enhancements */
 footer p a {
-  color: #ff69b4; /* Deep Pink */
+  color: #3d2632; /* Deep Pink */
   text-decoration: none;
 }
 footer p a:hover {
-  color: #ffe6f0; /* Light Pink */
+  color: darkred; /* Light Pink */
 }
 
 /* Button Transitions */
@@ -1716,7 +1704,7 @@ button:hover,
 
 /* Text Rotator Styling */
 .rotate {
-  font-family: "Great Vibes", cursive;
+  font-family: "Sofia", cursive;
   color: #ff69b4;
   font-size: 24px;
 }
@@ -1727,7 +1715,7 @@ button:hover,
   border-radius: 10px; /* Rounded corners */
 }
 .modal-title {
-  font-family: "Great Vibes", cursive; /* Elegant cursive font */
+  font-family: "Sofia", cursive; /* Elegant cursive font */
   color: #ff69b4; /* Deep Pink */
 }
 .modal-body #blogPostContent {
