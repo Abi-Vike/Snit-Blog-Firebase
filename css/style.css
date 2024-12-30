@@ -491,11 +491,24 @@ table {
 }
 /* ==========================================================================Hero========================================================================== */
 .hero {
-  background: url("../img/personal/dave-profile.jpg") right bottom no-repeat;
-  background-size: contain;
+  background: url("../img/personal/berlin.jpg") right bottom no-repeat;
+  background-size: cover;
   padding: 110px 0 100px 0;
   height: auto;
   background-color: rgb(249, 244, 244);
+}
+.hero:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+.hero container {
+  position: relative;
+  z-index: 2;
 }
 .hero h1 {
   font-size: 120px;
