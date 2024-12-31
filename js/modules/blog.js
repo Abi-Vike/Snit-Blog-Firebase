@@ -38,7 +38,7 @@ $(document).ready(function () {
                     : ""
                 }
                 <p class="card-text">${truncateText(post.content, 150)}</p>
-                <button class="btn btn-primary continue-reading-btn" data-id="${postId}">Continue to Read</button>
+                <button class="btn btn-primary continue-reading-btn" data-id="${postId}">Keep Reading</button>
               </div>
             </div>
           </li>

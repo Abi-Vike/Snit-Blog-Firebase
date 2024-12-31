@@ -622,7 +622,7 @@ h1.arrow {
 .color-bg h6,
 .color-bg p {
   color: rgb(54, 33, 33);
-  font-size: 24px;
+  font-size: 18px;
 }
 .color-bg h6::after {
   border-color: #fff;
@@ -636,14 +636,23 @@ h1.arrow {
   color: #e04343;
   border-color: rgba(0, 0, 0, 0);
 }
+
+/*-------------------------------------------------------Blog-Sliders-----------------------------------------------------------*/
 .blog-text {
-  padding: 2em 3em 2.5em 3em;
+  color: rgb(54, 33, 33);
+  font-family: "Trirong";
 }
-.blog-text h1 {
-  text-transform: uppercase;
+.blog-text .card-title {
+  font-family: "Trirong";
+  padding: 2em 3em 0 3em;
   font-size: 24px;
-  color: #8c8c8c;
 }
+
+.blog-text .card-text {
+  font-size: 22px;
+}
+/*-------------------------------------------------------------------------------------------------------------------------------*/
+
 .color-bg h1.arrow span {
   color: #eb9a04; /* golden I in who am I*/
 }
