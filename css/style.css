@@ -591,15 +591,13 @@ h1.arrow {
   font-family: "Sofia"; /* Applying Sofia */
   font-size: 30px; /* Increased size for prominence */
   text-transform: uppercase;
-  color: rgb(54, 33, 33);
+  color: rgb(54, 33, 33); /* dark brown */
   letter-spacing: 4px;
   background: url("../img/h1-bg.png") no-repeat center bottom;
   padding-bottom: 30px;
   font-weight: bold;
 }
-h1.arrow span {
-  color: #ff69b4; /* Deep Pink */
-}
+
 /* ==========================================================================blog========================================================================== */
 .blog-image {
   height: 500px;
@@ -1726,17 +1724,18 @@ button:hover,
 
 /* Modal Enhancements */
 .modal-content {
-  background-color: #ffe6f0; /* Soft Pink */
+  background-color: #eee5d7; /* main creamy */
   border-radius: 10px; /* Rounded corners */
 }
 .modal-title {
   font-family: "Sofia", cursive; /* Elegant cursive font */
-  color: #ff69b4; /* Deep Pink */
-}
-.modal-body #blogPostContent {
-  color: #353535;
   font-size: large;
-  font-family: "Poppins", sans-serif; /* Consistent font */
+  color: rgb(54, 33, 33); /* main dark brown */
+}
+.modal-body #blogPostContent p {
+  font-size: large;
+  font-family: "Sofia"; /* Consistent font */
+  color: rgb(54, 33, 33); /* main dark brown */
 }
 
 /* Smooth Scroll Animation */

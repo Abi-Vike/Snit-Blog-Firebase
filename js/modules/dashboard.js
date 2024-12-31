@@ -50,7 +50,6 @@ $(document).ready(function () {
 
     const title = $("#post-title").val().trim();
     const content = $("#post-content").val().trim();
-    const imageURL = $("#post-image").val().trim();
 
     if (!title || !content) {
       alert("Title and Content are required.");
@@ -61,7 +60,6 @@ $(document).ready(function () {
       await addDoc(collection(db, "posts"), {
         title,
         content,
-        imageURL: imageURL || "",
         timestamp: new Date(),
       });
       alert("Post created successfully!");
