@@ -16,6 +16,9 @@ $(document).ready(function () {
   const sliderPrev = $(".slider-prev");
   const sliderNext = $(".slider-next");
 
+  /**
+   * Fetches posts from Firestore and displays them in the slider.
+   */
   function fetchAndDisplayPosts() {
     const postsRef = collection(db, "posts");
     const q = query(postsRef, orderBy("timestamp", "desc"));
@@ -27,18 +30,33 @@ $(document).ready(function () {
         const post = docSnap.data();
         const postId = docSnap.id;
 
+        const plainText = stripHTML(post.content);
+        const normalizedText = plainText.replace(/\s+/g, " ").trim();
+        const isTruncated = normalizedText.length > 150;
+        const truncatedContent = isTruncated
+          ? truncateText(normalizedText, 150)
+          : normalizedText;
+
+        const continueReadingLink = isTruncated
+          ? `<a href="#" class="continue-reading-link" data-id="${postId}">Keep Reading</a>`
+          : "";
+
         const slideItem = `
           <li>
             <div class="post-card card mb-3">
               <div class="card-body">
-                <h4 class="card-title">${post.title}</h4>
+                <h4 class="card-title">${sanitizeText(post.title)}</h4>
                 ${
                   post.imageURL
-                    ? `<img src="${post.imageURL}" alt="${post.title}" class="img-fluid mb-2">`
+                    ? `<img src="${sanitizeURL(
+                        post.imageURL
+                      )}" alt="${sanitizeText(
+                        post.title
+                      )}" class="img-fluid mb-2">`
                     : ""
                 }
-                <p class="card-text">${truncateText(post.content, 150)}</p>
-                <button class="btn btn-primary continue-reading-btn" data-id="${postId}">Keep Reading</button>
+                <p class="card-text">${sanitizeText(truncatedContent)}</p>
+                ${continueReadingLink}
               </div>
             </div>
           </li>
@@ -51,12 +69,60 @@ $(document).ready(function () {
     });
   }
 
-  function truncateText(text, maxLength) {
-    return text.length > maxLength
-      ? text.substring(0, maxLength) + "..."
-      : text;
+  /**
+   * Sanitizes text by stripping all HTML tags and escaping special characters.
+   * @param {string} text - The text to sanitize.
+   * @returns {string} - The sanitized text.
+   */
+  function sanitizeText(text) {
+    const temp = document.createElement("div");
+    temp.textContent = text;
+    return temp.innerHTML;
   }
 
+  /**
+   * Sanitizes URLs to ensure they are safe.
+   * @param {string} url - The URL to sanitize.
+   * @returns {string} - The sanitized URL.
+   */
+  function sanitizeURL(url) {
+    const temp = document.createElement("a");
+    temp.href = url;
+    return temp.href;
+  }
+
+  /**
+   * Strips all HTML tags from a string.
+   * @param {string} html - The HTML string to strip.
+   * @returns {string} - The plain text string.
+   */
+  function stripHTML(html) {
+    const tmp = document.createElement("div");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+  }
+
+  /**
+   * Truncates text without cutting off words.
+   * @param {string} text - The text to truncate.
+   * @param {number} maxLength - The maximum number of characters.
+   * @returns {string} - The truncated text.
+   */
+  function truncateText(text, maxLength) {
+    if (text.length > maxLength) {
+      const truncated = text.substring(0, maxLength);
+      const lastSpace = truncated.lastIndexOf(" ");
+      return lastSpace > 0
+        ? truncated.substring(0, lastSpace) + "..."
+        : truncated + "...";
+    } else {
+      return text;
+    }
+  }
+
+  /**
+   * Initializes the FlexSlider if not already initialized.
+   */
   function initializeFlexSlider() {
     if (blogSlider.hasClass("flexslider-initialized")) return;
 
@@ -82,11 +148,19 @@ $(document).ready(function () {
     });
   }
 
-  slidesList.on("click", "button.continue-reading-btn", async function () {
+  /**
+   * Handles the click event for "Keep Reading" links to display the full post in a modal.
+   */
+  slidesList.on("click", "a.continue-reading-link", async function (e) {
+    e.preventDefault();
     const postId = $(this).data("id");
     await displayFullPost(postId);
   });
 
+  /**
+   * Displays the full post content in a modal.
+   * @param {string} postId - The ID of the post to display.
+   */
   async function displayFullPost(postId) {
     const postDoc = doc(db, "posts", postId);
     const docSnap = await getDoc(postDoc);
@@ -97,10 +171,12 @@ $(document).ready(function () {
       $("#blogPostContent").html(`
         ${
           post.imageURL
-            ? `<img src="${post.imageURL}" alt="${post.title}" class="img-fluid mb-2">`
+            ? `<img src="${sanitizeURL(post.imageURL)}" alt="${sanitizeText(
+                post.title
+              )}" class="img-fluid mb-2">`
             : ""
         }
-        <p>${post.content}</p>
+        <p>${sanitizeText(post.content).replace(/\s+/g, " ").trim()}</p>
       `);
       $("#blogPostModal").modal("show");
     } else {
@@ -108,5 +184,6 @@ $(document).ready(function () {
     }
   }
 
+  // Initial fetch and display of posts
   fetchAndDisplayPosts();
 });
