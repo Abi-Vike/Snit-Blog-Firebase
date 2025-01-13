@@ -9,6 +9,7 @@ import {
   doc,
   getDoc,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.es.js";
 
 $(document).ready(function () {
   const blogSlider = $("#blogSlider");
@@ -30,17 +31,6 @@ $(document).ready(function () {
         const post = docSnap.data();
         const postId = docSnap.id;
 
-        const plainText = stripHTML(post.content);
-        const normalizedText = plainText.replace(/\s+/g, " ").trim();
-        const isTruncated = normalizedText.length > 150;
-        const truncatedContent = isTruncated
-          ? truncateText(normalizedText, 150)
-          : normalizedText;
-
-        const continueReadingLink = isTruncated
-          ? `<a href="#" class="continue-reading-link" data-id="${postId}">Keep Reading</a>`
-          : "";
-
         const slideItem = `
           <li>
             <div class="post-card card mb-3">
@@ -55,8 +45,8 @@ $(document).ready(function () {
                       )}" class="img-fluid mb-2">`
                     : ""
                 }
-                <p class="card-text">${sanitizeText(truncatedContent)}</p>
-                ${continueReadingLink}
+                <p class="card-text">${truncateText(post.content, 150)}</p>
+                <button class="btn btn-primary continue-reading-btn" data-id="${postId}">Keep Reading</button>
               </div>
             </div>
           </li>
@@ -103,20 +93,28 @@ $(document).ready(function () {
   }
 
   /**
-   * Truncates text without cutting off words.
-   * @param {string} text - The text to truncate.
+   * Truncates text after sanitizing and normalizing it.
+   * Removes excessive whitespace and limits to a specified length without cutting words.
+   * @param {string} htmlContent - The HTML content to truncate.
    * @param {number} maxLength - The maximum number of characters.
-   * @returns {string} - The truncated text.
+   * @returns {string} - The truncated plain text.
    */
-  function truncateText(text, maxLength) {
-    if (text.length > maxLength) {
-      const truncated = text.substring(0, maxLength);
+  function truncateText(htmlContent, maxLength) {
+    // Strip HTML tags to get plain text
+    const plainText = stripHTML(htmlContent);
+
+    // Normalize whitespace: replace multiple spaces and newlines with a single space
+    const normalizedText = plainText.replace(/\s+/g, " ").trim();
+
+    if (normalizedText.length > maxLength) {
+      // Truncate without cutting words
+      const truncated = normalizedText.substring(0, maxLength);
       const lastSpace = truncated.lastIndexOf(" ");
       return lastSpace > 0
         ? truncated.substring(0, lastSpace) + "..."
         : truncated + "...";
     } else {
-      return text;
+      return normalizedText;
     }
   }
 
@@ -149,10 +147,9 @@ $(document).ready(function () {
   }
 
   /**
-   * Handles the click event for "Keep Reading" links to display the full post in a modal.
+   * Handles the click event for "Keep Reading" buttons to display the full post in a modal.
    */
-  slidesList.on("click", "a.continue-reading-link", async function (e) {
-    e.preventDefault();
+  slidesList.on("click", "button.continue-reading-btn", async function () {
     const postId = $(this).data("id");
     await displayFullPost(postId);
   });
@@ -168,6 +165,44 @@ $(document).ready(function () {
     if (docSnap.exists()) {
       const post = docSnap.data();
       $("#blogPostModalLabel").text(post.title);
+
+      // Sanitize the content using DOMPurify to allow safe HTML
+      let sanitizedContent = DOMPurify.sanitize(post.content, {
+        ALLOWED_TAGS: [
+          "b",
+          "i",
+          "em",
+          "strong",
+          "a",
+          "p",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "ul",
+          "ol",
+          "li",
+          "br",
+          "img",
+        ],
+        ALLOWED_ATTR: ["href", "src", "alt", "title"],
+      });
+
+      // Remove empty paragraphs to prevent excessive spacing
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = sanitizedContent;
+
+      const paragraphs = tempDiv.querySelectorAll("p");
+      paragraphs.forEach((p) => {
+        if (p.innerHTML.trim() === "" || p.innerHTML.trim() === "<br>") {
+          p.remove();
+        }
+      });
+
+      sanitizedContent = tempDiv.innerHTML;
+
       $("#blogPostContent").html(`
         ${
           post.imageURL
@@ -176,7 +211,7 @@ $(document).ready(function () {
               )}" class="img-fluid mb-2">`
             : ""
         }
-        <p>${sanitizeText(post.content).replace(/\s+/g, " ").trim()}</p>
+        ${sanitizedContent}
       `);
       $("#blogPostModal").modal("show");
     } else {

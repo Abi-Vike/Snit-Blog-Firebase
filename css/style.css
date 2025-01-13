@@ -599,6 +599,12 @@ h1.arrow {
 }
 
 /* ==========================================================================blog========================================================================== */
+/* Prevent excessive spacing from empty paragraphs in the modal */
+#blogPostModal .modal-body p:empty,
+#blogPostModal .modal-body p:only-child.br {
+  display: none;
+}
+
 .blog-image {
   height: 500px;
   -webkit-background-size: cover;
