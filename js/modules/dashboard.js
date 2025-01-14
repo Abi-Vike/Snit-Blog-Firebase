@@ -16,6 +16,7 @@ import {
   orderBy,
   onSnapshot,
   serverTimestamp,
+  getDoc,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 $(document).ready(function () {
