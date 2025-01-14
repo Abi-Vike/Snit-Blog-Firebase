@@ -1,29 +1,24 @@
+// js/modules/menu.js
+
 (function () {
-  var bodyEl = document.body,
-    openbtn = document.getElementById("open-button"),
-    closebtn = document.getElementById("close-button"),
-    isOpen = false;
+  const bodyEl = document.body;
+  const openBtn = document.getElementById("open-button");
+  const closeBtn = document.getElementById("close-button");
 
   function init() {
-    initEvents();
-  }
-
-  function initEvents() {
-    if (openbtn) {
-      openbtn.addEventListener("click", toggleMenu);
+    if (openBtn) {
+      openBtn.addEventListener("click", toggleMenu);
     }
-    if (closebtn) {
-      closebtn.addEventListener("click", toggleMenu);
+    if (closeBtn) {
+      closeBtn.addEventListener("click", toggleMenu);
     }
   }
 
   function toggleMenu() {
-    if (isOpen) {
-      classie.remove(bodyEl, "show-menu");
-    } else {
-      classie.add(bodyEl, "show-menu");
-    }
-    isOpen = !isOpen;
+    bodyEl.classList.toggle("show-menu");
+    // Optionally, toggle an active class for animation on buttons
+    openBtn.classList.toggle("active");
+    closeBtn.classList.toggle("active");
   }
 
   init();

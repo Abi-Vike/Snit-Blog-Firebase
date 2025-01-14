@@ -10,6 +10,7 @@ import {
   getDoc,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.es.js";
+import { serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 $(document).ready(function () {
   const blogSlider = $("#blogSlider");

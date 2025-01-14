@@ -45,6 +45,10 @@ $(window).on("load", function () {
   ];
 
   sliderConfigs.forEach((slider) => {
-    $(slider.selector).flexslider(slider.options);
+    const $slider = $(slider.selector);
+    if (!$slider.hasClass("flexslider-initialized")) {
+      $slider.flexslider(slider.options);
+      $slider.addClass("flexslider-initialized");
+    }
   });
 });

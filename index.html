@@ -145,11 +145,16 @@
         </div>
         <!-- Blog Posts -->
         <div class="col-md-8 nopadding blog-text">
-          <div id="blogSlider">
+          <div id="blogSlider" class="flexslider">
             <ul class="slides">
               <!-- Blog posts will be dynamically loaded here via JavaScript -->
               <!-- Example placeholder -->
             </ul>
+          </div>
+          <!-- Slider Controls -->
+          <div class="slider-controls">
+            <button class="slider-prev btn btn-secondary">Previous</button>
+            <button class="slider-next btn btn-secondary">Next</button>
           </div>
           <!-- Custom Navigation Buttons -->
           <div class="slider-nav-buttons">
@@ -328,9 +333,12 @@
         =========================== -->
 
   <!-- jQuery and JS Libraries -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <!-- Randomly changed jQuery version from 1.11.0 to 2.0.0-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>  
   <script src="assets/smoothscroll/smoothscroll.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
   <!-- Other JS Libraries -->
   <script src="js/waypoints.min.js"></script>
   <script src="js/classie.js"></script>

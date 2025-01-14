@@ -9,7 +9,9 @@ import {
   doc,
   getDoc as getDocFirestore,
   updateDoc,
+  serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.es.js";
 
 $(document).ready(function () {
   const logoutBtn = $("#logout-btn");
@@ -68,7 +70,28 @@ $(document).ready(function () {
       if (docSnap.exists()) {
         const post = docSnap.data();
         editPostTitle.val(post.title);
-        quillEditor.root.innerHTML = post.content;
+        quillEditor.root.innerHTML = DOMPurify.sanitize(post.content, {
+          ALLOWED_TAGS: [
+            "b",
+            "i",
+            "em",
+            "strong",
+            "a",
+            "p",
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "ul",
+            "ol",
+            "li",
+            "br",
+            "img",
+          ],
+          ALLOWED_ATTR: ["href", "src", "alt", "title"],
+        });
       } else {
         alert("No such post exists.");
         window.location.href = "dashboard.html";
@@ -84,11 +107,32 @@ $(document).ready(function () {
   editPostForm.on("submit", async function (e) {
     e.preventDefault();
 
-    const updatedTitle = editPostTitle.val().trim();
-    const updatedContent = editPostContent.val().trim();
+    // Reset previous error messages
+    $(".form-control").removeClass("is-invalid is-valid");
+    $("#edit-post-error").text("");
 
-    if (!updatedTitle || !updatedContent) {
-      alert("Title and Content are required.");
+    const updatedTitle = editPostTitle.val().trim();
+    const updatedContent = $("#quill-editor").html().trim(); // Get content from Quill
+
+    let isValid = true;
+
+    // Validate Title
+    if (!updatedTitle) {
+      $("#edit-post-title").addClass("is-invalid");
+      isValid = false;
+    } else {
+      $("#edit-post-title").addClass("is-valid");
+    }
+
+    // Validate Content
+    if (!updatedContent || stripHTML(updatedContent).length === 0) {
+      $("#quill-editor").addClass("is-invalid");
+      isValid = false;
+    } else {
+      $("#quill-editor").addClass("is-valid");
+    }
+
+    if (!isValid) {
       return;
     }
 
@@ -97,13 +141,14 @@ $(document).ready(function () {
       await updateDoc(postDoc, {
         title: updatedTitle,
         content: updatedContent,
-        timestamp: new Date(),
+        timestamp: serverTimestamp(),
       });
-      alert("Post updated successfully!");
+      // Display success message using Bootstrap alerts
+      $("#edit-post-error").html(`<div class="alert alert-success" role="alert">Post updated successfully!</div>`);
       window.location.href = "dashboard.html";
     } catch (error) {
       console.error("Error updating post:", error);
-      alert("Failed to update post. Please try again.");
+      $("#edit-post-error").html(`<div class="alert alert-danger" role="alert">Failed to update post. Please try again.</div>`);
     }
   });
 
@@ -112,4 +157,17 @@ $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
   }
+
+  // Utility Function to Strip HTML Tags
+  function stripHTML(html) {
+    const tmp = document.createElement("div");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+  }
+
+  // Initialize Quill Editor Content Synchronization
+  quillEditor.on("text-change", function () {
+    const content = quillEditor.root.innerHTML;
+    $("#edit-post-content").val(content);
+  });
 });

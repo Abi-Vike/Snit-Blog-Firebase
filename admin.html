@@ -22,7 +22,7 @@
       <h1 class="text-center">Admin Panel</h1>
       <div id="login-section" class="mt-4">
         <h3>Login</h3>
-        <form id="login-form">
+        <form id="login-form" novalidate>
           <div class="form-group">
             <label for="login-email">Email address</label>
             <input
@@ -32,6 +32,9 @@
               placeholder="Enter email"
               required
             />
+            <div class="invalid-feedback">
+              Please provide a valid email.
+            </div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
@@ -42,6 +45,9 @@
               placeholder="Password"
               required
             />
+            <div class="invalid-feedback">
+              Please enter your password.
+            </div>
           </div>
           <button type="submit" class="btn btn-primary">Login</button>
         </form>
@@ -55,5 +61,10 @@
 
     <!-- Admin JavaScript Module -->
     <script type="module" src="js/modules/admin.js"></script>
+   
+    <!-- Import admin-specific scripts -->
+    <script src="js/classie.js"></script> <!-- Ensure dependencies are loaded first -->
+    <script type="module" src="js/modules/admin.js"></script>
+
   </body>
 </html>

@@ -1,4 +1,4 @@
-// js/modules/page-scroll.js
+// js/modules/smooth-scroll.js
 
 $(document).ready(function () {
   $('a[href^="#"]').on("click", function (e) {
@@ -7,11 +7,10 @@ $(document).ready(function () {
     var target = this.hash;
     var $target = $(target);
 
-    $("html, body")
-      .stop()
-      .animate(
+    if ($target.length) {
+      $("html, body").animate(
         {
-          scrollTop: $target.offset().top,
+          scrollTop: $target.offset().top - 125, // Adjust offset as needed
         },
         800,
         "swing",
@@ -19,5 +18,6 @@ $(document).ready(function () {
           window.location.hash = target;
         }
       );
+    }
   });
 });

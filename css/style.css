@@ -1357,18 +1357,6 @@ ul.slides li {
   text-overflow: ellipsis;
 }
 
-/* Play Icon Styling */
-.play-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  opacity: 0.8;
-  display: none;
-  transition: opacity 0.3s;
-}
-
 /* Positioning the Overlay */
 .overlay-effect {
   position: relative;
@@ -1477,18 +1465,6 @@ ul.slides li {
 .overlay-effect:hover .play-icon {
   display: block;
   opacity: 1;
-}
-
-/* Grayscale Effect on Images */
-.grayscale {
-  filter: grayscale(100%);
-  -webkit-filter: grayscale(100%);
-  transition: filter 0.3s;
-}
-
-.overlay-effect:hover .grayscale {
-  filter: grayscale(0%);
-  -webkit-filter: grayscale(0%);
 }
 
 /* Ensure images are responsive within the modal */
